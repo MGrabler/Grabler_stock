@@ -1,0 +1,19 @@
+
+CREATE OR REPLACE PROCEDURE
+PROC_NEW_CUSTOMER(  CUSTOMER_ID OUT     INTEGER,
+                    EMAIL       IN      VARCHAR,
+                    FIRSTNAME   IN      VARCHAR,
+                    LASTNAME    IN      VARCHAR,
+                    GENDER      IN      VARCHAR,
+                    BIRTHDATE   IN      DATE,
+                    CREDITS     IN OUT  DECIMAL) IS
+BEGIN
+    CUSTOMER_ID := SEQ_CUSTOMER_ID.nextval;
+    
+    IF (CREDITS IS NULL OR CREDITS < 0) THEN
+        CREDITS := 10;
+    END IF;
+    
+    INSERT INTO CUSTOMER VALUES(CUSTOMER_ID, EMAIL, FIRSTNAME, LASTNAME, GENDER, BIRTHDATE, CREDITS);
+    COMMIT;
+END PROC_NEW_CUSTOMER;
