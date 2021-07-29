@@ -15,6 +15,7 @@ public class OracleConnection
 		try
 		{	// Load the jdbc driver
 			Class.forName("oracle.jdbc.OracleDriver");
+			open();
 		}
 		catch(ClassNotFoundException e)
 		{
